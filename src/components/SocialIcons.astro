@@ -25,7 +25,7 @@ const socials = [
 ];
 ---
 
-<div class="flex flex-wrap gap-3 mb-16">
+<div class="flex flex-wrap gap-2 md:gap-3 mb-12 md:mb-16 justify-center md:justify-start">
   {socials.map(link => {
     const style = brandConfig[link.id];
     
@@ -33,7 +33,7 @@ const socials = [
       <a 
         href={link.url} 
         target="_blank" 
-        class={`w-11 h-11 aspect-square flex items-center justify-center p-2.5 bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl transition-all shadow-sm group ${style.border}`}
+        class={`w-12 h-12 md:w-11 md:h-11 aspect-square flex items-center justify-center p-3 md:p-2.5 bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl transition-all shadow-sm group ${style.border}`}
         title={link.name}
       >
         <div class={`w-full h-full text-[var(--text-muted)] transition-colors ${style.color}`}>

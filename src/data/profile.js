@@ -2,7 +2,7 @@ export const profile = {
   name: "yonu (yonu33)",
   fullName: "yonu",
   bio: "会津大学コンピュータ理工学部 33期生 (UoA33)",
-  role: "GDGoC Aizu Co-Organizer / UoA Hub 管理者",
+  role: "GDGoC Aizu Co-Organizer / UoA Hub Administrator",
   avatar: "https://avatars.githubusercontent.com/u/175496140",
   email: "contact[at]yonu.work",
   contacts: [

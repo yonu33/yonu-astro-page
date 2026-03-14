@@ -16,22 +16,33 @@ const getFavicon = (siteUrl) => {
 };
 ---
 
-<section class="mb-20 pt-16 border-t border-[var(--border-color)]">
-  <h2 class="text-xs uppercase tracking-[0.2em] text-[var(--text-muted)] font-bold mb-8 italic">■ Mutual Links</h2>
+<section class="mb-16 md:mb-20 pt-12 md:pt-16 border-t border-[var(--border-color)]">
+  <h2 class="text-xs uppercase tracking-[0.2em] text-[var(--text-muted)] font-bold mb-6 md:mb-8 italic">■ Mutual Links</h2>
   
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
     {mutualLinks.map(site => (
       <a 
         href={site.url} 
         target="_blank" 
-        class="group flex items-center gap-4 p-4 bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl hover:border-blue-500 transition-all duration-300"
+        /* スマホでは p-3 にしてコンテンツ幅を確保、PCでは p-4 */
+        class="group flex items-center gap-3 md:gap-4 p-3 md:p-4 bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl hover:border-blue-500 transition-all duration-300 active:scale-[0.98]"
       >
-        <div class="w-12 h-12 shrink-0 flex items-center justify-center bg-white/5 dark:bg-slate-700/50 rounded-xl overflow-hidden border border-[var(--border-color)]">
-          <img src={getFavicon(site.url)} alt="" class="w-7 h-7 object-contain" />
+        <div class="w-12 h-12 shrink-0 flex items-center justify-center bg-white/5 dark:bg-slate-700/50 rounded-xl overflow-hidden border border-[var(--border-color)] group-hover:scale-105 transition-transform">
+          <img 
+            src={getFavicon(site.url)} 
+            alt="" 
+            class="w-7 h-7 object-contain"
+            loading="lazy" 
+          />
         </div>
+
         <div class="overflow-hidden">
-          <h3 class="font-bold text-[var(--text-main)] truncate">{site.name}</h3>
-          <p class="text-[10px] text-[var(--text-muted)] font-mono truncate">{site.url.replace(/^https?:\/\//, '')}</p>
+          <h3 class="font-bold text-sm md:text-base text-[var(--text-main)] truncate group-hover:text-blue-500 transition-colors">
+            {site.name}
+          </h3>
+          <p class="text-[10px] text-[var(--text-muted)] font-mono truncate mt-0.5 opacity-80">
+            {site.url.replace(/^https?:\/\//, '').replace(/\/$/, '')}
+          </p>
         </div>
       </a>
     ))}

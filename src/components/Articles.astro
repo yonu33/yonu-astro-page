@@ -24,16 +24,17 @@ const articles = [
 ];
 ---
 
-<section class="mb-20">
-  <h2 class="text-xs uppercase tracking-[0.2em] text-[var(--text-muted)] font-bold mb-8 italic">■ Recent Articles</h2>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<section class="mb-16 md:mb-20 px-1 md:px-0">
+  <h2 class="text-xs uppercase tracking-[0.2em] text-[var(--text-muted)] font-bold mb-6 md:mb-8 italic">■ Recent Articles</h2>
+  
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-8">
     {articles.map(article => {
       const style = platformConfig[article.platform] || platformConfig.Blog;
       const proxyUrl = `https://images.weserv.nl/?url=${encodeURIComponent(article.thumbnail)}&w=800&af`;
 
       return (
         <a href={article.url} target="_blank" class="group block">
-          <div class="aspect-video w-full overflow-hidden rounded-2xl border border-[var(--border-color)] mb-4 bg-[var(--bg-card)]">
+          <div class="aspect-video w-full overflow-hidden rounded-xl md:rounded-2xl border border-[var(--border-color)] mb-4 bg-[var(--bg-card)]">
             <img 
               src={proxyUrl} 
               alt=""
@@ -49,7 +50,7 @@ const articles = [
             <span class="text-[10px] text-[var(--text-muted)] font-mono">{article.date}</span>
           </div>
           
-          <h3 class="font-bold text-[var(--text-main)] group-hover:text-blue-500 transition-colors leading-snug">
+          <h3 class="text-base md:text-lg font-bold text-[var(--text-main)] group-hover:text-blue-500 transition-colors leading-snug">
             {article.title}
           </h3>
         </a>
