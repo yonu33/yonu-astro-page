@@ -4,43 +4,47 @@ import Footer from '../components/Footer.astro';
 import { projects } from '../data/projects.js';
 ---
 
-<Layout title="Works">
+<Layout title="Projects">
   <main class="max-w-3xl mx-auto py-20 px-6">
-    <h1 class="text-4xl font-black mb-16 italic border-b-4 border-slate-900 pb-4 uppercase tracking-tighter">Projects</h1>
+    <h1 class="text-4xl font-black mb-16 italic border-b-4 border-[var(--text-main)] pb-4 uppercase tracking-tighter text-[var(--text-main)]">
+      Projects
+    </h1>
     
     <div class="space-y-32">
       {projects.map(project => (
         <section id={project.id} class="group scroll-mt-24">
           <div class="flex flex-col md:flex-row md:items-baseline justify-between mb-6">
-            <h2 class="text-3xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors tracking-tight">{project.title}</h2>
-            <span class="text-sm font-mono text-slate-400 font-bold">{project.period}</span>
+            <h2 class="text-3xl font-bold text-[var(--text-main)] group-hover:text-blue-500 transition-colors tracking-tight">
+              {project.title}
+            </h2>
+            <span class="text-sm font-mono text-[var(--text-muted)] font-bold">{project.period}</span>
           </div>
 
-          <p class="text-slate-600 mb-8 leading-relaxed text-base">
+          <p class="text-[var(--text-main)] opacity-80 mb-8 leading-relaxed text-base">
             {project.description}
             {project.article && (
               <a href={project.article} target="_blank" class="ml-2 text-blue-500 font-bold hover:underline">解説記事を読む →</a>
             )}
           </p>
 
-          <div class="bg-white border border-slate-100 rounded-2xl p-8 shadow-sm">
-            <h3 class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-6 italic">Technical Stack</h3>
+          <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl p-8 shadow-sm">
+            <h3 class="text-[10px] font-black uppercase tracking-widest text-[var(--text-muted)] mb-6 italic">Technical Stack</h3>
             <dl class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 text-sm">
               {Object.entries(project.stack).map(([key, value]) => (
-                <div class="border-l-2 border-slate-50 pl-4">
-                  <dt class="font-bold text-slate-800 mb-1">{key}</dt>
-                  <dd class="text-slate-500 font-medium">{value}</dd>
+                <div class="border-l-2 border-[var(--border-color)] pl-4">
+                  <dt class="font-bold text-[var(--text-main)] mb-1">{key}</dt>
+                  <dd class="text-[var(--text-muted)] font-medium">{value}</dd>
                 </div>
               ))}
             </dl>
           </div>
 
-          <div class="mt-8 pt-6 border-t border-slate-100 flex items-center gap-4">
-            <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest">GitHub</span>
+          <div class="mt-8 pt-6 border-t border-[var(--border-color)] flex items-center gap-4">
+            <span class="text-[10px] font-black text-[var(--text-muted)] uppercase tracking-widest">GitHub</span>
             {project.github === "非公開" ? (
-              <span class="text-sm text-slate-300 italic font-medium">{project.github}</span>
+              <span class="text-sm text-slate-400 dark:text-slate-600 italic font-medium">{project.github}</span>
             ) : (
-              <a href={project.github} target="_blank" class="text-sm text-blue-500 hover:text-blue-700 break-all font-mono font-bold underline underline-offset-4">
+              <a href={project.github} target="_blank" class="text-sm text-blue-500 hover:text-blue-400 break-all font-mono font-bold underline underline-offset-4 transition-colors">
                 {project.github}
               </a>
             )}

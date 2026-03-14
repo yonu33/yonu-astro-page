@@ -10,32 +10,32 @@ import { history } from '../data/history.js';
 <Layout title="About">
   <main class="max-w-3xl mx-auto py-20 px-6 space-y-24">
     <header>
-      <h1 class="text-4xl font-black tracking-tight text-slate-900 mb-4 text-center md:text-left">About Me</h1>
-      <p class="text-slate-500 font-medium text-center md:text-left">{profile.fullName}</p>
-      <p class="text-xs text-slate-400 mt-1 text-center md:text-left uppercase tracking-widest">{profile.role}</p>
+      <h1 class="text-4xl font-black tracking-tight text-[var(--text-main)] mb-4 text-center md:text-left">About Me</h1>
+      <p class="text-[var(--text-muted)] font-medium text-center md:text-left">{profile.fullName}</p>
+      <p class="text-xs text-slate-400 dark:text-slate-500 mt-1 text-center md:text-left uppercase tracking-widest">{profile.role}</p>
     </header>
 
     <section>
-      <h2 class="text-xs uppercase tracking-[0.2em] text-slate-400 font-bold mb-8 italic">■ Personal</h2>
+      <h2 class="text-xs uppercase tracking-[0.2em] text-[var(--text-muted)] font-bold mb-8 italic">■ Personal</h2>
       <ul class="space-y-4">
         {profile.personal.map(item => (
-          <li class="flex border-b border-slate-100 pb-2">
-            <span class="w-32 font-bold text-slate-400 text-sm uppercase">{item.label}</span>
-            <span class="text-slate-700 font-medium text-sm">{item.value}</span>
+          <li class="flex border-b border-[var(--border-color)] pb-2">
+            <span class="w-32 font-bold text-[var(--text-muted)] text-sm uppercase">{item.label}</span>
+            <span class="text-[var(--text-main)] font-medium text-sm">{item.value}</span>
           </li>
         ))}
       </ul>
     </section>
 
     <section>
-      <h2 class="text-xs uppercase tracking-[0.2em] text-slate-400 font-bold mb-8 italic">■ Technical Stack</h2>
-      <div class="overflow-hidden border border-slate-100 rounded-xl shadow-sm bg-white">
+      <h2 class="text-xs uppercase tracking-[0.2em] text-[var(--text-muted)] font-bold mb-8 italic">■ Technical Stack</h2>
+      <div class="overflow-hidden border border-[var(--border-color)] rounded-xl shadow-sm bg-[var(--bg-card)]">
         <table class="w-full text-sm">
-          <tbody class="divide-y divide-slate-100">
+          <tbody class="divide-y divide-[var(--border-color)]">
             {profile.tech.map(item => (
               <tr>
-                <td class="px-4 py-3 font-bold bg-slate-50/50 text-slate-800 w-32 uppercase text-[10px] text-slate-400">{item.cat}</td>
-                <td class="px-4 py-3 text-slate-600 font-medium text-xs">{item.details}</td>
+                <td class="px-4 py-3 font-bold bg-slate-50/50 dark:bg-slate-900/50 text-[var(--text-muted)] w-32 uppercase text-[10px]">{item.cat}</td>
+                <td class="px-4 py-3 text-[var(--text-main)] opacity-90 font-medium text-xs">{item.details}</td>
               </tr>
             ))}
           </tbody>
@@ -44,49 +44,49 @@ import { history } from '../data/history.js';
     </section>
 
     <section>
-  <h2 class="text-xs uppercase tracking-[0.2em] text-slate-400 font-bold mb-8 italic">■ Projects</h2>
-  <div class="grid gap-4">
-    {projects.map(project => (
-      <a href={`/works#${project.id}`} class="group block">
-        <div class="p-4 rounded-xl border border-slate-100 bg-white shadow-sm flex flex-col md:flex-row md:items-center gap-2 md:gap-6 group-hover:border-blue-500 group-hover:shadow-md transition-all duration-300">
-          <span class="text-xs font-mono text-slate-400 w-32">{project.period}</span>
-          <div>
-            <span class="font-bold text-slate-800 mr-2 group-hover:text-blue-600 transition-colors">
-              {project.title}
-            </span>
-            <span class="text-sm text-slate-500">
-              {project.summary}
-            </span>
-          </div>
-        </div>
-      </a>
-    ))}
-  </div>
-</section>
+      <h2 class="text-xs uppercase tracking-[0.2em] text-[var(--text-muted)] font-bold mb-8 italic">■ Projects</h2>
+      <div class="grid gap-4">
+        {projects.map(project => (
+          <a href={`/works#${project.id}`} class="group block">
+            <div class="p-4 rounded-xl border border-[var(--border-color)] bg-[var(--bg-card)] shadow-sm flex flex-col md:flex-row md:items-center gap-2 md:gap-6 group-hover:border-blue-500 group-hover:shadow-md transition-all duration-300">
+              <span class="text-xs font-mono text-[var(--text-muted)] w-32">{project.period}</span>
+              <div>
+                <span class="font-bold text-[var(--text-main)] mr-2 group-hover:text-blue-500 transition-colors">
+                  {project.title}
+                </span>
+                <span class="text-sm text-[var(--text-muted)] group-hover:text-[var(--text-main)] transition-colors">
+                  {project.summary}
+                </span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
 
     <section>
-      <h2 class="text-xs uppercase tracking-[0.2em] text-slate-400 font-bold mb-8 italic">■ Activity</h2>
+      <h2 class="text-xs uppercase tracking-[0.2em] text-[var(--text-muted)] font-bold mb-8 italic">■ Activity</h2>
       <HistoryTimeline history={history} />
     </section>
 
     <section>
-  <h2 class="text-xs uppercase tracking-[0.2em] text-slate-400 font-bold mb-8 italic">■ Contacts</h2>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-    {profile.contacts.map(contact => (
-      <a 
-        href={contact.href} 
-        target="_blank" 
-        rel="noopener noreferrer" 
-        class="flex items-center justify-between p-4 border border-slate-100 rounded-xl hover:bg-slate-50 transition-all group shadow-sm bg-white"
-      >
-        <span class="text-slate-400 uppercase text-[10px] font-bold">{contact.label}</span>
-        <span class="text-slate-700 font-bold group-hover:text-blue-600 transition-colors">
-          {contact.val}
-        </span>
-      </a>
-    ))}
-  </div>
-</section>
+      <h2 class="text-xs uppercase tracking-[0.2em] text-[var(--text-muted)] font-bold mb-8 italic">■ Contacts</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {profile.contacts.map(contact => (
+          <a 
+            href={contact.href} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="flex items-center justify-between p-4 border border-[var(--border-color)] rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-all group shadow-sm bg-[var(--bg-card)]"
+          >
+            <span class="text-[var(--text-muted)] uppercase text-[10px] font-bold">{contact.label}</span>
+            <span class="text-[var(--text-main)] font-bold group-hover:text-blue-500 transition-colors">
+              {contact.val}
+            </span>
+          </a>
+        ))}
+      </div>
+    </section>
 
     <Footer />
   </main>
