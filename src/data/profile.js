@@ -17,7 +17,8 @@ export const profile = {
     { label: "出身地", value: "宮城県仙台市" },
     { label: "所属", value: "会津大学コンピュータ理工学部（33期生）、GDGoC Aizu (Co-Organizer)" },
     { label: "サークル", value: "カンフー部、DMC、Zli etc..." },
-    { label: "趣味", value: "旅行、言語学習、映画鑑賞、レトロゲーム" }
+    { label: "趣味", value: "旅行、言語学習、映画鑑賞、レトロゲーム" },
+    { label: "関心領域", value: "AI / LLM、Web開発、マイコン、3Dプリント、近距離無線通信、Discord Bot開発"}
   ],
   tech: [
     { cat: "Languages", details: "C, C#, Python, JavaScript" },
@@ -25,6 +26,5 @@ export const profile = {
     { cat: "Backend", details: ".NET, Python, JavaScript, Cloudflare Workers, GAS" },
     { cat: "Tools", details: "Git, GitHub, MediaPipe, Raspberry Pi, Discord API / Webhook" },
     { cat: "Other", details: "韓国語（旅行に十分な程度）" }
-  ],
-  interests: "AI/LLM、Web開発、マイコン、3Dプリント、近距離無線通信、Discord Bot開発"
+  ]
 };
