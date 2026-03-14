@@ -1,9 +1,9 @@
 ---
 const platformConfig = {
-  Qiita: { color: "text-[#55c500]", bgColor: "bg-[#55c500]/10" },
-  Zenn:  { color: "text-[#3ea8ff]", bgColor: "bg-[#3ea8ff]/10" },
-  note:  { color: "text-[#2cb696]", bgColor: "bg-[#2cb696]/10" },
-  Blog:  { color: "text-slate-900", bgColor: "bg-slate-100" },
+  Qiita: { color: "text-[#55c500]", bgColor: "bg-[#55c500]/10 dark:bg-[#55c500]/20" },
+  Zenn:  { color: "text-[#3ea8ff]", bgColor: "bg-[#3ea8ff]/10 dark:bg-[#3ea8ff]/20" },
+  note:  { color: "text-[#2cb696]", bgColor: "bg-[#2cb696]/10 dark:bg-[#2cb696]/20" },
+  Blog:  { color: "text-[var(--text-main)]", bgColor: "bg-[var(--border-color)]" },
 };
 
 const articles = [
@@ -18,23 +18,22 @@ const articles = [
     platform: "note",
     title: "Visual Studio CodeでRemote SSH of theすすめ～自宅でも大学の課題をする方法～【会津大生向け】",
     url: "https://note.com/yonu33/n/n2391204a1fbe",
-    date: "2026.11.15",
+    date: "2025.11.15",
     thumbnail: "https://assets.st-note.com/production/uploads/images/229398634/rectangle_large_type_2_1f13574cfc3f0f93c4462d0d78cebe99.png?width=1280"
   }
 ];
 ---
 
 <section class="mb-20">
-  <h2 class="text-xs uppercase tracking-[0.2em] text-slate-400 font-bold mb-8">Recent Articles</h2>
+  <h2 class="text-xs uppercase tracking-[0.2em] text-[var(--text-muted)] font-bold mb-8 italic">■ Recent Articles</h2>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
     {articles.map(article => {
       const style = platformConfig[article.platform] || platformConfig.Blog;
-      
       const proxyUrl = `https://images.weserv.nl/?url=${encodeURIComponent(article.thumbnail)}&w=800&af`;
 
       return (
         <a href={article.url} target="_blank" class="group block">
-          <div class="aspect-video w-full overflow-hidden rounded-2xl border border-slate-100 mb-4 bg-slate-50">
+          <div class="aspect-video w-full overflow-hidden rounded-2xl border border-[var(--border-color)] mb-4 bg-[var(--bg-card)]">
             <img 
               src={proxyUrl} 
               alt=""
@@ -42,13 +41,15 @@ const articles = [
               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
             />
           </div>
+          
           <div class="flex items-center gap-2 mb-2">
             <span class={`text-[10px] font-bold px-2 py-0.5 rounded ${style.bgColor} ${style.color}`}>
               {article.platform}
             </span>
-            <span class="text-[10px] text-slate-300 font-mono">{article.date}</span>
+            <span class="text-[10px] text-[var(--text-muted)] font-mono">{article.date}</span>
           </div>
-          <h3 class="font-bold text-slate-800 group-hover:text-blue-600 transition-colors leading-snug">
+          
+          <h3 class="font-bold text-[var(--text-main)] group-hover:text-blue-500 transition-colors leading-snug">
             {article.title}
           </h3>
         </a>

@@ -1,3 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-page: #ffffff;
+    --bg-card: #ffffff;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --border-color: #f1f5f9;
+  }
+
+  :root.dark {
+    --bg-page: #0f172a;
+    --bg-card: #1e293b;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --border-color: #334155;
+  }
+
+  body {
+    @apply bg-[var(--bg-page)] text-[var(--text-main)] transition-colors duration-300;
+  }
+}
+
+@layer components {
+  .card-surface {
+    @apply bg-[var(--bg-card)] border border-[var(--bg-card)] shadow-sm rounded-2xl transition-all duration-300;
+  }
+}

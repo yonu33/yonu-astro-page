@@ -3,14 +3,19 @@ const { history } = Astro.props;
 ---
 <div class="space-y-6">
   {history.map(item => (
-    <div class="flex gap-4 border-l-2 border-slate-200 pl-4 hover:border-[#008578] transition-colors group">
-      <span class="text-xs font-mono text-slate-400 pt-0.5">{item.date}</span>
+    <div class="flex gap-4 border-l-2 border-[var(--border-color)] pl-4 hover:border-[#008578] transition-colors group">
+      <span class="text-xs font-mono text-[var(--text-muted)] pt-0.5">{item.date}</span>
       {item.href ? (
-        <a href={item.href} target="_blank" rel="noopener noreferrer" class="text-sm text-slate-600 group-hover:text-[#008578] transition-colors underline decoration-slate-200 underline-offset-4 hover:decoration-[#008578]">
+        <a 
+          href={item.href} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="text-sm text-[var(--text-main)] opacity-80 group-hover:opacity-100 group-hover:text-[#008578] transition-all underline decoration-[var(--border-color)] underline-offset-4 hover:decoration-[#008578]"
+        >
           {item.text}
         </a>
       ) : (
-        <span class="text-sm text-slate-600">{item.text}</span>
+        <span class="text-sm text-[var(--text-main)] opacity-80">{item.text}</span>
       )}
     </div>
   ))}

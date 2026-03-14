@@ -4,11 +4,15 @@ const { project, variant = "compact" } = Astro.props;
 
 {variant === "compact" ? (
   <a href={`/works#${project.id}`} class="group block">
-    <div class="p-4 rounded-xl border border-slate-100 bg-white shadow-sm flex flex-col md:flex-row md:items-center gap-2 md:gap-6 group-hover:border-blue-500 group-hover:shadow-md transition-all duration-300">
-      <span class="text-xs font-mono text-slate-400 w-32">{project.period}</span>
+    <div class="p-4 rounded-xl border border-[var(--border-color)] bg-[var(--bg-card)] shadow-sm flex flex-col md:flex-row md:items-center gap-2 md:gap-6 group-hover:border-blue-500 group-hover:shadow-md transition-all duration-300">
+      <span class="text-xs font-mono text-[var(--text-muted)] w-32">{project.period}</span>
       <div>
-        <span class="font-bold text-slate-800 mr-2 group-hover:text-blue-600 transition-colors">{project.title}</span>
-        <span class="text-sm text-slate-500">{project.description}</span>
+        <span class="font-bold text-[var(--text-main)] mr-2 group-hover:text-blue-500 transition-colors">
+          {project.title}
+        </span>
+        <span class="text-sm text-[var(--text-muted)] group-hover:text-[var(--text-main)] transition-colors">
+          {project.description}
+        </span>
       </div>
     </div>
   </a>

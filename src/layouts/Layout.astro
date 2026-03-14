@@ -14,7 +14,26 @@ const navItems = [
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="/favicon.png" />
-	<title>{title ? `${title} | yonu33` : 'yonu33のホームページ'}</title>
+	  <title>{title ? `${title} | yonu33` : 'yonu33のホームページ'}</title>
+  
+    <script is:inline>
+      const theme = (() => {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+        return localStorage.getItem('theme');
+      }
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        return 'dark';
+      }
+      return 'light';
+    })();
+
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  </script>
+  
   </head>
   <body class="bg-slate-50 text-slate-900 font-sans antialiased min-h-screen">
     <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100">
