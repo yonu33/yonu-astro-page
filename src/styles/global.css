@@ -5,22 +5,18 @@
 @layer base {
   :root {
     --bg-page: #ffffff;
-    --bg-card: #ffffff;
-    --text-main: #0f172a;
-    --text-muted: #64748b;
-    --border-color: #f1f5f9;
+    --bg-card: #f8fafc; /* slate-50 */
+    --text-main: #0f172a; /* slate-900 */
+    --text-muted: #64748b; /* slate-500 */
+    --border-color: #f1f5f9; /* slate-100 */
   }
 
   :root.dark {
-    --bg-page: #0f172a;
-    --bg-card: #1e293b;
-    --text-main: #f8fafc;
-    --text-muted: #94a3b8;
-    --border-color: #334155;
-  }
-
-  body {
-    @apply bg-[var(--bg-page)] text-[var(--text-main)] transition-colors duration-300;
+    --bg-page: #0f172a; /* slate-900 */
+    --bg-card: #1e293b; /* slate-800 */
+    --text-main: #f8fafc; /* slate-50 */
+    --text-muted: #94a3b8; /* slate-400 */
+    --border-color: #334155; /* slate-700 */
   }
 }
 
