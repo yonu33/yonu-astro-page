@@ -1,23 +1,34 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+import '../styles/global.css';
+const { title } = Astro.props;
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+const navItems = [
+  { name: 'Top', href: '/' },
+  { name: 'About', href: '/about' },
+  { name: 'Works', href: '/works' },
+];
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+	<title>{title ? `${title} | yonu33` : 'yonu33のホームページ'}</title>
+  </head>
+  <body class="bg-slate-50 text-slate-900 font-sans antialiased min-h-screen">
+    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100">
+      <div class="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="font-black text-xl tracking-tighter text-slate-900">yonu.work</a>
+        <div class="flex gap-8">
+          {navItems.map(item => (
+            <a href={item.href} class="text-sm font-bold text-slate-500 hover:text-black transition-colors">
+              {item.name}
+            </a>
+          ))}
+        </div>
+      </div>
+    </nav>
+    <slot />
+  </body>
+</html>

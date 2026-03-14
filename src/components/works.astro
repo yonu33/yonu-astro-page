@@ -1,0 +1,104 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const projects = [
+  {
+    id: "MoveGUI-by-Hand",
+    title: "MoveGUI by Hand",
+    period: "2024.03 - 2025.01",
+    description: "高校時代に課題研究で制作。MediaPipeを用いたハンドジェスチャ認識によって、上下スクロールやクリック操作のような画面操作をWebカメラを通して非接触で可能としたアプリケーション。",
+    stack: {
+      Frontend: "Tkinter",
+      Backend: "Python (MediaPipe, scikit-learn, NumPy, PyAutoGUI, OpenCV, Joblib)",
+      Infrastructure: "Raspberry Pi 4 Model B 4GB, RasTechカメラモジュール"
+    },
+    github: "非公開"
+  },
+  {
+    id: "gakushoku-bot",
+    title: "gakushoku-bot",
+    period: "2025.11",
+    description: "毎日定時に会津大学の学食メニューをDiscordへ通知するアプリケーション。10:00に『日替わりランチ』、15:30に『夕食セット』、19:00に『明日のメニュー予告』を通知する。",
+    stack: {
+      Frontend: "Discord Client",
+      Backend: "Discord Webhook API, JavaScript",
+      Infrastructure: "Cloudflare Workers"
+    },
+    github: "https://github.com/yonu33/gakushoku-bot"
+  },
+  {
+    id: "uoa-hub-auth-bot",
+    title: "uoa-hub-auth-bot",
+    period: "2025.11",
+    description: "大学コミュニティや関連団体のDiscordサーバー参加者向けのメール認証システム。大学ドメインのメールアドレスで認証し、自動でロールを付与する。",
+    stack: {
+      Frontend: "Discord Client, HTML, CSS",
+      Backend: "JavaScript (Discord API, Gmail API)",
+      Database: "Google Sheets",
+      Infrastructure: "Cloudflare Workers, Google Apps Script"
+    },
+    github: "非公開",
+    article: "https://qiita.com/yonu/items/fcaac74ca97eb41835b7"
+  },
+  {
+    id: "akabeko-reminder-bot",
+    title: "akabeko-reminder-bot",
+    period: "2026.01",
+    description: "Discord上で登録した予定をロールまたはユーザ個人単位に向けて会津弁でメンションする、中規模コミュニティ向けリマインダーBot。",
+    stack: {
+      Frontend: "Discord Client",
+      Backend: "Python (discord.py, APScheduler)",
+      Database: "SQLite",
+      Infrastructure: "Docker, Docker Compose, Raspberry Pi 4 Model B"
+    },
+    github: "https://github.com/yonu33/akabeko-reminder-bot"
+  }
+];
+---
+
+<Layout title="Works">
+  <main class="max-w-3xl mx-auto py-16 px-6">
+    <h1 class="text-3xl font-black mb-12 italic border-b-2 border-slate-100 pb-4">制作物</h1>
+    
+    <div class="space-y-20">
+      {projects.map(project => (
+        <section id={project.id} class="group">
+          <div class="flex flex-col md:flex-row md:items-baseline justify-between mb-6">
+            <h2 class="text-2xl font-bold text-slate-900">{project.title}</h2>
+            <span class="text-sm font-mono text-slate-400">{project.period}</span>
+          </div>
+
+          <p class="text-slate-600 mb-8 leading-relaxed">
+            {project.description}
+            {project.article && (
+              <a href={project.article} target="_blank" class="ml-2 text-blue-500 hover:underline">解説記事</a>
+            )}
+          </p>
+
+          <div class="bg-slate-50 rounded-2xl p-6 space-y-4">
+            <h3 class="text-[10px] font-black uppercase tracking-widest text-slate-400">Technical Stack</h3>
+            <dl class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+              {Object.entries(project.stack).map(([key, value]) => (
+                <div>
+                  <dt class="font-bold text-slate-800">{key}</dt>
+                  <dd class="text-slate-500">{value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-slate-100">
+            <span class="text-[10px] font-bold text-slate-400 uppercase mr-4 tracking-tighter">GitHub</span>
+            {project.github === "非公開" ? (
+              <span class="text-sm text-slate-400">{project.github}</span>
+            ) : (
+              <a href={project.github} target="_blank" class="text-sm text-blue-500 hover:underline break-all font-mono italic">
+                {project.github}
+              </a>
+            )}
+          </div>
+        </section>
+      ))}
+    </div>
+  </main>
+</Layout>

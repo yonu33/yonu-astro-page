@@ -1,0 +1,58 @@
+---
+const platformConfig = {
+  Qiita: { color: "text-[#55c500]", bgColor: "bg-[#55c500]/10" },
+  Zenn:  { color: "text-[#3ea8ff]", bgColor: "bg-[#3ea8ff]/10" },
+  note:  { color: "text-[#2cb696]", bgColor: "bg-[#2cb696]/10" },
+  Blog:  { color: "text-slate-900", bgColor: "bg-slate-100" },
+};
+
+const articles = [
+  {
+    platform: "Qiita",
+    title: "大学メールアドレスによるメール認証システムを作ってDiscordの大学コミュニティに導入した話",
+    url: "https://qiita.com/yonu/items/fcaac74ca97eb41835b7",
+    date: "2025.12.09",
+    thumbnail: "https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F4281160%2F476e210c-cc92-4c42-85a9-4e2eea497be0.png?ixlib=rb-4.0.0&auto=format&gif-q=60&q=75&w=1400&fit=max&s=4a68ad2067b25005a9251df71e4179d9"
+  },
+  {
+    platform: "note",
+    title: "Visual Studio CodeでRemote SSH of theすすめ～自宅でも大学の課題をする方法～【会津大生向け】",
+    url: "https://note.com/yonu33/n/n2391204a1fbe",
+    date: "2026.11.15",
+    thumbnail: "https://assets.st-note.com/production/uploads/images/229398634/rectangle_large_type_2_1f13574cfc3f0f93c4462d0d78cebe99.png?width=1280"
+  }
+];
+---
+
+<section class="mb-20">
+  <h2 class="text-xs uppercase tracking-[0.2em] text-slate-400 font-bold mb-8">Recent Articles</h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    {articles.map(article => {
+      const style = platformConfig[article.platform] || platformConfig.Blog;
+      
+      const proxyUrl = `https://images.weserv.nl/?url=${encodeURIComponent(article.thumbnail)}&w=800&af`;
+
+      return (
+        <a href={article.url} target="_blank" class="group block">
+          <div class="aspect-video w-full overflow-hidden rounded-2xl border border-slate-100 mb-4 bg-slate-50">
+            <img 
+              src={proxyUrl} 
+              alt=""
+              loading="lazy"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+            />
+          </div>
+          <div class="flex items-center gap-2 mb-2">
+            <span class={`text-[10px] font-bold px-2 py-0.5 rounded ${style.bgColor} ${style.color}`}>
+              {article.platform}
+            </span>
+            <span class="text-[10px] text-slate-300 font-mono">{article.date}</span>
+          </div>
+          <h3 class="font-bold text-slate-800 group-hover:text-blue-600 transition-colors leading-snug">
+            {article.title}
+          </h3>
+        </a>
+      );
+    })}
+  </div>
+</section>
