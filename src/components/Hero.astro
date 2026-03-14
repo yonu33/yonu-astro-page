@@ -23,5 +23,51 @@ const profile = {
     </p>
     <p class="text-[10px] md:text-sm text-slate-400 dark:text-slate-500 mt-3 md:mt-2 font-mono uppercase tracking-[0.2em]">
       {profile.role}
+    </p>
+
+    <div id="status-container" class="mt-6 opacity-0 transition-opacity duration-1000 flex justify-center md:justify-start">
+      <div class="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-[var(--bg-card)] border border-[var(--border-color)] shadow-sm">
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+        </span>
+        <span id="status-text" class="text-[10px] md:text-xs font-mono text-[var(--text-muted)] truncate max-w-[200px] md:max-w-xs">
+          Checking status...
+        </span>
+      </div>
     </div>
+  </div>
 </header>
+
+<script is:inline>
+  const DISCORD_ID = "1347610481233494139"; 
+
+  async function updateLanyard() {
+    try {
+      const res = await fetch(`https://api.lanyard.rest/v1/users/${DISCORD_ID}`);
+      const { data } = await res.json();
+      
+      const container = document.getElementById('status-container');
+      const text = document.getElementById('status-text');
+
+      const activity = data.activities.find(a => a.type === 0) || data.activities.find(a => a.type === 2);
+
+      if (activity) {
+        let icon = "🎮";
+        if (activity.name === "YouTube Music" || activity.type === 2) icon = "🎵";
+        if (activity.name === "Visual Studio Code") icon = "💻";
+
+        const detail = activity.details ? `: ${activity.details}` : "";
+        text.innerText = `${icon} ${activity.name}${detail}`;
+        container.classList.replace('opacity-0', 'opacity-100');
+      } else {
+        container.classList.replace('opacity-100', 'opacity-0');
+      }
+    } catch (e) {
+      console.error("Lanyard API Error:", e);
+    }
+  }
+
+  updateLanyard();
+  setInterval(updateLanyard, 30000);
+</script>
