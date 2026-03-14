@@ -3,6 +3,11 @@ import '../styles/global.css';
 import ThemeIcon from '../components/ThemeIcon.astro';
 const { title } = Astro.props;
 
+const siteName = "yonu.work";
+const siteDescription = "This is yonu33's homepage.";
+const ogImage = "https://avatars.githubusercontent.com/u/175496140";
+const pageTitle = title ? `${title} | ${siteName}` : siteName;
+
 const navItems = [
   { name: 'Top', href: '/' },
   { name: 'About', href: '/about' },
@@ -15,7 +20,20 @@ const navItems = [
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="/favicon.png" />
-    <title>{title ? `${title} | yonu.work` : 'yonu.work'}</title>
+    <title>{pageTitle}</title>
+
+    <meta name="description" content={siteDescription} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={siteDescription} />
+    <meta property="og:image" content={ogImage} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@yonu33" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={siteDescription} />
+    <meta name="twitter:image" content={ogImage} />
   
     <script is:inline>
       const theme = (() => {
