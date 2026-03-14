@@ -1,3 +1,44 @@
+---
+const profile = {
+  name: "yonu (yonu33)",
+  bio: "会津大学コンピュータ理工学部 33期生 (UoA33)",
+  role: "GDGoC Aizu Co-Organizer / UoA Hub Administrator",
+  avatar: "https://avatars.githubusercontent.com/u/175496140"
+};
+---
+
+<header class="flex flex-col items-center md:items-start gap-6 mb-12 md:mb-16">
+  <img 
+    src={profile.avatar} 
+    alt={profile.name} 
+    class="w-24 h-24 md:w-32 md:h-32 rounded-full border-4 border-[var(--bg-card)] shadow-xl dark:shadow-none transition-transform duration-500 hover:scale-105"
+  />
+  
+  <div class="text-center md:text-left px-2 md:px-0">
+    <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-[var(--text-main)] mb-2">
+      {profile.name}
+    </h1>
+    <p class="text-base md:text-xl text-[var(--text-muted)] font-medium italic leading-relaxed">
+      {profile.bio}
+    </p>
+    <p class="text-[10px] md:text-sm text-slate-400 dark:text-slate-500 mt-3 md:mt-2 font-mono uppercase tracking-[0.2em]">
+      {profile.role}
+    </p>
+
+    <div id="status-container" class="mt-6 opacity-0 transition-opacity duration-1000 flex justify-center md:justify-start">
+      <div class="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-[var(--bg-card)] border border-[var(--border-color)] shadow-sm">
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+        </span>
+        <span id="status-text" class="text-[10px] md:text-xs font-mono text-[var(--text-muted)] truncate max-w-[200px] md:max-w-xs">
+          Checking status...
+        </span>
+      </div>
+    </div>
+  </div>
+</header>
+
 <script is:inline>
   const DISCORD_ID = "1347610481233494139"; 
 
@@ -8,7 +49,7 @@
       
       const container = document.getElementById('status-container');
       const text = document.getElementById('status-text');
-
+      
       const activity = data.activities.find(a => a.name === "Visual Studio Code") || 
                        data.activities.find(a => a.type === 0) || 
                        data.activities.find(a => a.type === 2);
